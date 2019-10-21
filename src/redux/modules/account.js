@@ -20,7 +20,8 @@ export const constants = {
   ACCOUNT_GENERATE_TWO_FACTOR_SMS: createSagaAction('ACCOUNT_GENERATE_TWO_FACTOR_SMS'),
   ACCOUNT_CONFIGURE_TWO_FACTOR_SMS: createSagaAction('ACCOUNT_CONFIGURE_TWO_FACTOR_SMS'),
   ACCOUNT_GET_TWO_FACTOR_STATUS: createSagaAction('ACCOUNT_GET_TWO_FACTOR_STATUS'),
-  ACCOUNT_DISABLE_TWO_FACTOR: createSagaAction('ACCOUNT_DISABLE_TWO_FACTOR')
+  ACCOUNT_DISABLE_TWO_FACTOR: createSagaAction('ACCOUNT_DISABLE_TWO_FACTOR'),
+  ACCOUNT_PRIVACY_OPTOUT: createSagaAction('ACCOUNT_PRIVACY_OPTOUT')
 };
 
 // Action Creators
@@ -96,6 +97,13 @@ export const actions = {
   }),
   getTwoFactorStatus: () => ({
     type: constants.ACCOUNT_GET_TWO_FACTOR_STATUS.ACTION
+  }),
+  privacyOptout: ({ email, firstName, lastName, phone }) => ({
+    type: constants.ACCOUNT_PRIVACY_OPTOUT.ACTION,
+    email,
+    firstName,
+    lastName,
+    phone
   })
 };
 
@@ -165,6 +173,16 @@ export default createReducer(initialState, (state, action) => {
       return { ...state, twoFactorStatus: action.payload };
     case constants.ACCOUNT_DISABLE_TWO_FACTOR.SUCCESS:
       return { ...state, twoFactorStatus: {} };
+    case constants.ACCOUNT_PRIVACY_OPTOUT.ACTION:
+      return { ...state, resolving: true };
+    case constants.ACCOUNT_PRIVACY_OPTOUT.SUCCESS:
+      return { ...state, resolving: false, user: action.payload };
+    case constants.ACCOUNT_PRIVACY_OPTOUT.FAILED:
+      return {
+        ...state,
+        resolving: false,
+        message: action.payload
+      };
     default:
       return state;
   }

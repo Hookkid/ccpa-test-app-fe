@@ -101,3 +101,25 @@ export function getTwoFactorAuthenticationStatus() {
     method: 'GET'
   });
 }
+
+export async function privacyOptout({ email, firstName, lastName, phone }) {
+  const options = {
+    body: JSON.stringify({
+      firstName,
+      lastName,
+      email,
+      phone,
+      originEntity: 'test',
+      optedOut: true
+    }),
+    headers: { 'Content-Type': 'application/json' },
+    method: 'post'
+  };
+  const response = await fetch('http://localhost:3050/endpoints/privacy-rights/v1', options);
+  const json = await response.json();
+  if (json.success) {
+    return { email, firstName, lastName, optedOut: true };
+  } else {
+    return json;
+  }
+}

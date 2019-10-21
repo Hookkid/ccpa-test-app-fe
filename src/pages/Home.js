@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { actions as uiActions } from '../redux/modules/ui';
+import { actions as accountActions } from '../redux/modules/account';
 import ItemScroller from '../components/ui/ItemScroller';
 import { Button, Icon } from 'semantic-ui-react';
 
@@ -13,7 +14,7 @@ class Home extends Component {
       email: '',
       password: '',
       response: {},
-      loading: false,
+      resolving: false,
       errorMesssage: null
     };
   }
@@ -31,6 +32,7 @@ class Home extends Component {
   };
 
   render() {
+    console.log('user', this.props.user);
     return (
       <div
         style={{
@@ -38,6 +40,24 @@ class Home extends Component {
           padding: '20px'
         }}
       >
+        {this.props.user && (
+          <div>
+            Test the opt out:{' '}
+            <Button
+              loading={this.props.resolving}
+              onClick={() =>
+                this.props.privacyOptout({
+                  email: this.props.user.email,
+                  firstName: this.props.user.firstName,
+                  lastName: this.props.user.lastName,
+                  phone: '1234567890'
+                })
+              }
+            >
+              Opt out
+            </Button>
+          </div>
+        )}
         <ItemScroller
           header="A content container"
           items="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla arcu justo, volutpat a lacus vel, porttitor imperdiet leo. Pellentesque venenatis metus ut dolor cursus, id porta lorem facilisis. Sed viverra, ligula quis hendrerit hendrerit, leo massa gravida nisi, eu tempus enim leo id nibh."
@@ -74,13 +94,16 @@ class Home extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    productList: state.products.productList
-  };
-};
+const mapStateToProps = (state, { location }) => ({
+  productList: state.products.productList,
+  user: state.account.user,
+  resolving: state.account.resolving
+});
+
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  showTopMenu: () => dispatch(uiActions.showTopMenu())
+  showTopMenu: () => dispatch(uiActions.showTopMenu()),
+  privacyOptout: (email, firstName, lastName, phone) =>
+    dispatch(accountActions.privacyOptout(email, firstName, lastName, phone))
 });
 
 Home.propTypes = propTypes;

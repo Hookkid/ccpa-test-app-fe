@@ -51,7 +51,6 @@ class NavBar extends Component {
         </Link>
       </div>
     );
-    console.log('user', user);
     return (
       <div className="navBar">
         <div className="navBarContent">

@@ -284,6 +284,22 @@ function* watchDisableTwoFactor() {
   yield takeLatest(constants.ACCOUNT_DISABLE_TWO_FACTOR.ACTION, disableTwoFactor);
 }
 
+function* privacyOptOut(action) {
+  try {
+    const payload = yield call(api.privacyOptout, action);
+    yield put({ type: constants.ACCOUNT_PRIVACY_OPTOUT.SUCCESS, payload });
+  } catch (e) {
+    yield put({
+      type: constants.ACCOUNT_PRIVACY_OPTOUT.FAILED,
+      message: e.message || e
+    });
+  }
+}
+
+function* watchPrivacyOptOut() {
+  yield takeLatest(constants.ACCOUNT_PRIVACY_OPTOUT.ACTION, privacyOptOut);
+}
+
 /**
  * Export the root saga by forking all available sagas.
  */
@@ -304,6 +320,7 @@ export function* rootSaga() {
     fork(watchGenerateTwoFactorAuthenticationQR),
     fork(watchConfigureTwoFactorAuthenticationQR),
     fork(watchGetTwoFactorStatus),
-    fork(watchDisableTwoFactor)
+    fork(watchDisableTwoFactor),
+    fork(watchPrivacyOptOut)
   ]);
 }
