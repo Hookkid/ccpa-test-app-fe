@@ -42,7 +42,7 @@ class Home extends Component {
       >
         {this.props.user && (
           <div>
-            Test the opt out:{' '}
+            Test one-click opt out:{' '}
             <Button
               loading={this.props.resolving}
               onClick={() =>
