@@ -1,0 +1,169 @@
+/* Add your own styles here. */
+html,
+body {
+  background-color: #fafaf9;
+  height: 100%;
+}
+
+
+/** MAIN DROP APP CONTAINER*/
+#privacy-rights-optout .aaaContainer {
+  padding: 10px;
+  .button--primary {
+    background-color: #ff0100;
+    min-width: 150px;
+    text-align: center;
+    padding: 15px 10px 15px 10px;
+    min-height: 50px;
+    color: #fff;
+    font-weight: 600;
+    border-radius: 4px;
+  }
+}
+
+/** BREADCRUM STYLES */
+#privacy-rights-optout .breadcrumb {
+  display: flex;
+  color: #737373;
+  margin-left: 40px;
+  font-weight: 600;
+  font-size: 1rem !important;
+  > a {
+    color: #737373;
+    text-decoration: none;
+  }
+  > span {
+    margin-left: 10px;
+  }
+}
+
+/** LANDING PAGE CONTAINER (DESCRIPTION, CARDS, ACCORDION)*/
+#privacy-rights-optout .content-container {
+  padding: 0 50px;
+  .content-container__title {
+    font-weight: 800;
+    font-size: 2rem;
+    text-align: center;
+  }
+  .content-container__subtitle {
+    font-weight: 500;
+    font-size: 1rem;
+    padding: 0 20px;
+    max-width: 60%;
+    margin: 0 auto;
+    text-align: center;
+    align-items: center;
+  }
+}
+
+/** CARDS CONTAINER AND CARD ITEMS */
+#privacy-rights-optout .cards-container {
+  display: flex;
+  .card-container {
+    background-color: white;
+    margin: 20px;
+    padding: 20px;
+    width: 33%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    .card-container__title {
+      font-weight: 800;
+      font-size: 1.2rem;
+      color: #000;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .card-container__subtitle {
+      font-size: 1rem;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    .button-container {
+      display: flex;
+      justify-content: center;
+    }
+  }
+}
+
+/** ACCORDION AND ACCORDION ITEMS */
+#privacy-rights-optout .accordion {
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  margin: 20px;
+  .accordion__item {
+    background-color: white;
+    font-weight: 600;
+    font-size: 1.2rem;
+    width: 100%;
+    margin-top: 10px;
+    padding: 0 10px;
+    min-height: 50px;
+    .accordion__chevron--up {
+      transform: rotate(180deg);
+    }
+  }
+  .accordion-item__header {
+    font-weight: 600;
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    > .accordion__item {
+      position: relative;
+      .accordion__chevron {
+        position: absolute;
+        right: 0;
+      }
+    }
+  }
+  .accordion-item__body {
+    font-size: 1rem;
+    font-weight: normal;
+    padding: 10px;
+  }
+}
+
+#privacy-rights-optout .accordion-item__body--closed {
+  display: none;
+  transition: display 0.5s linear;
+}
+
+/* FORM STYLES */
+#privacy-rights-optout .form-container {
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+  margin: 0 auto;
+  margin-top: 20px;
+  .input__label {
+    display: none;
+  }
+  .input {
+    height: 80px;
+    width: 60%;
+    margin: 0 auto;
+    .input__error {
+      color: #dc3232;
+      margin-left: 20px;
+      font-size: 0.85rem;
+    }
+    .input__floating {
+      width: 100%;
+      input {
+        font-size: 1rem;
+        border: none;
+        width: 90%;
+        line-height: 40px;
+        outline: none;
+      }
+    }
+  }
+  .form-container__disclaimer {
+    padding: 10px;
+    font-weight: normal;
+    margin: 0 auto;
+    margin-top: 20px;
+  }
+}

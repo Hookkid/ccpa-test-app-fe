@@ -1,0 +1,26 @@
+{
+  "short_name": "Emporio",
+  "name": "Emporio das Carnes",
+  "icons": [
+    {
+      "src": "icon-144x144.png",
+      "type": "png",
+      "sizes": "144x144"
+    },
+    {
+      "src": "icon-192x192.png",
+      "type": "png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "icon-512x512.png",
+      "type": "png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "#0d0c0f",
+  "display": "standalone",
+  "scope": "/",
+  "theme_color": "#ff0100"
+}
