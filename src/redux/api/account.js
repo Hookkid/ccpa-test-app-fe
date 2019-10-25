@@ -115,7 +115,10 @@ export async function privacyOptout({ email, firstName, lastName, phone }) {
     headers: { 'Content-Type': 'application/json' },
     method: 'post'
   };
-  const response = await fetch('http://localhost:3050/endpoints/privacy-rights/v1', options);
+  const response = await fetch(
+    'https://pr123--aaa-ncnu--digital-ccpa-dns.calstate.aaabeta.com/endpoints/privacy-rights/v1',
+    options
+  );
   const json = await response.json();
   if (json.success) {
     return { email, firstName, lastName, optedOut: true };
